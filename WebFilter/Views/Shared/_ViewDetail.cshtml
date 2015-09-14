@@ -1,0 +1,21 @@
+﻿@model IEnumerable<WebFilter.Models.GatitoDetalle>
+
+<div id="gridposition" style="overflow: scroll; height: 300px; overflow-x: hidden;">
+    @{
+        var grid1 = new WebGrid(source: Model, canPage: true, rowsPerPage: 5, ajaxUpdateContainerId: "gridContent");
+
+        @grid1.GetHtml(mode: WebGridPagerModes.All, tableStyle: "webGrid",
+            headerStyle: "header",
+            alternatingRowStyle: "alt",
+            selectedRowStyle: "select",
+            rowStyle: "description",
+            htmlAttributes: new { id = "positionGrid" },
+            fillEmptyRows: false,
+
+            columns: grid1.Columns(
+                grid1.Column("Nombre", header: "Nombre"),
+                grid1.Column("Color", header: "Color"),
+                grid1.Column("NoPatas", header: "Número de Patas"),
+                grid1.Column("Fisonomia", header: "Fisonomia")))
+    }
+</div>

@@ -26,7 +26,19 @@ $("#searchInput").keyup(function () {
 $('#searchButton').click(function (e) {    
     var url = '@Url.Action("Table\\Filter")';
     $.get(url, { filter: $("#searchInput").val() }, function (result) {
-        debugger;
         $('#GatitosViewGrid').html(result);
     });
 });
+
+function openDialog(parameter) {
+    $("#dialog").dialog("open");
+    VerDetalle(parameter);
+}
+
+function VerDetalle(parameter) {
+    $('#GatitosViewDetail').empty();
+    var url = '/Table/ViewDetail';
+    $.get(url, { parameter: parameter }, function (result) {
+        $('#GatitosViewDetail').html(result);
+    });
+};

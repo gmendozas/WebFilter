@@ -36,6 +36,11 @@ namespace WebFilter.Controllers
             }
         }
 
+        public ActionResult ViewDetail(string parameter)
+        {
+            return PartialView("_ViewDetail", getDetalles(parameter));
+        }
+
         private List<GatitoModel> getGatitos()
         {
             List<GatitoModel> gatitos = new List<GatitoModel>();
@@ -45,6 +50,14 @@ namespace WebFilter.Controllers
             gatitos.Add(new GatitoModel("Piedritas", 2, "Eléctrico", "Gil"));
             gatitos.Add(new GatitoModel("Cobijas", 4, "Eléctrico", "Mamá"));
             return gatitos;
+        }
+
+        public List<GatitoDetalle> getDetalles(string parametro)
+        {
+            var detalles = from d in getGatitos()
+                           where d.Nombre.Equals(parametro)
+                           select new GatitoDetalle { Nombre = d.Nombre, Color = "Pardo", NoPatas = 5, Fisonomia = "Felina" };
+            return detalles.ToList<GatitoDetalle>();
         }
 
         public ActionResult ExportarExcel()

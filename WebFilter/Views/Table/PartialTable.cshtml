@@ -3,6 +3,29 @@
     ViewBag.Title = "GatitosView";
 }
 
+<script>
+  $(function() {
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      },
+      modal: true,
+      height: 330,
+      width: 500
+    });
+
+    $( "#opener" ).click(function() {
+      $( "#dialog" ).dialog( "open" );
+    });
+  });
+</script>
+
 <h2>GatitosView</h2>
 <div id="gridposition" style="overflow: scroll; height: 300px; overflow-x: hidden;">
     @{
@@ -17,11 +40,15 @@
             fillEmptyRows: false,
 
             columns: grid1.Columns(
-
-             grid1.Column("Nombre", header: "Nombre"),
-             grid1.Column("Edad", header: "Edad"),
-             grid1.Column("Raza", header: "Raza"),
-             grid1.Column("Adoptante", header: "Adoptante")))
-    }
+                grid1.Column("Nombre", header: "Nombre"),
+                grid1.Column("Edad", header: "Edad"),
+                grid1.Column("Raza", header: "Raza"),
+                grid1.Column("Adoptante", header: "Adoptante"),
+                grid1.Column(string.Empty, "Detalle", canSort: false, format: (item) => @Html.ActionLink("Ver", null, null,
+                    new { @Href = "#", onclick = "openDialog('" + item.Nombre + "');" }))))
+}
 </div>
 
+<div id="dialog" title="Detalles">
+    <div id="GatitosViewDetail"></div>
+</div>
