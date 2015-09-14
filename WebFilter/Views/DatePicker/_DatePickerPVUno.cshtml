@@ -1,0 +1,9 @@
+﻿<p>
+    @Html.Label("Fecha 1:  ")
+    @Html.Editor("fechaUno")
+</p>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#fechaUno").datepicker({dateFormat : 'dd/mm/yy'});
+    });
+</script>

@@ -1,0 +1,27 @@
+﻿@model IEnumerable<WebFilter.Models.GatitoModel>
+@{
+    ViewBag.Title = "GatitosView";
+}
+
+<h2>GatitosView</h2>
+<div id="gridposition" style="overflow: scroll; height: 300px; overflow-x: hidden;">
+    @{
+        var grid1 = new WebGrid(source: Model, canPage: true, rowsPerPage: 5, ajaxUpdateContainerId: "gridContent");
+
+        @grid1.GetHtml(mode: WebGridPagerModes.All, tableStyle: "webGrid",
+            headerStyle: "header",
+            alternatingRowStyle: "alt",
+            selectedRowStyle: "select",
+            rowStyle: "description",
+            htmlAttributes: new { id = "positionGrid" },
+            fillEmptyRows: false,
+
+            columns: grid1.Columns(
+
+             grid1.Column("Nombre", header: "Nombre"),
+             grid1.Column("Edad", header: "Edad"),
+             grid1.Column("Raza", header: "Raza"),
+             grid1.Column("Adoptante", header: "Adoptante")))
+    }
+</div>
+

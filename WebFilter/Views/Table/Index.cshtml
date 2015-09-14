@@ -1,0 +1,25 @@
+﻿@model IEnumerable<WebFilter.Models.GatitoModel>
+
+@{
+    ViewBag.Title = "Gatitos";
+}
+
+<h2>Gatitos</h2>
+
+<p>
+    <label for="searchInput">Buscar:&ensp;&ensp;&ensp;&ensp;&ensp;</label>
+    <input id="searchInput" placeholder="Búsqueda" />
+    <input id="searchButton" type="button" value="Buscar" />
+</p>
+<p>
+    @using (Html.BeginForm("ExportarExcel", "Table"))
+    {
+
+        <input type="submit" value="Exportar" />
+
+    }
+</p>
+<div id="GatitosViewGrid">
+    @Html.Partial("PartialTable", Model)
+</div>
+           
